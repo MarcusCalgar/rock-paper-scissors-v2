@@ -54,10 +54,10 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === "scissors" && computerSelection === "rock")
         ){
         computerScore++;
-        result = "You lost this round!"
+        result = `You lost this round! ${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}.`;
     } else {
         playerScore++;
-        result = "You won this round!";
+        result = `You won this round! ${capitalizeFirstLetter(playerSelection)} beats ${capitalizeFirstLetter(computerSelection)}.`;
     }
     return result;
 };
@@ -66,6 +66,10 @@ function printResults(result){
     console.log(`The result of this round is: ${result}`);
     console.log(`Your score is: ${playerScore}`);
     console.log(`The computer's score is: ${computerScore}`);
+}
+
+function capitalizeFirstLetter(selection){
+    return selection.charAt(0).toUpperCase() + selection.slice(1);
 }
 
 
