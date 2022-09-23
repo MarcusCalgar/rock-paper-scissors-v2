@@ -1,26 +1,48 @@
 //MAIN
 
-//Initialize score
-let numberOfRound = 1;
+//Initialization of variables
 let playerScore = 0;
 let computerScore = 0;
+let playerSelection;
+let computerSelection;
+let result;
+let numberOfRounds = 5;
 
 // Greet the user
 console.log("Welcome to Rock, Paper, Scissors!");
-console.log(`Round ${numberOfRound}`);
-// Get the user's choice
-let playerSelection = getPlayerSelection();
-//Calculate the computer's choice
-let computerSelection = getComputerSelection();
-//Print out the choices
-console.log(`You picked: ${playerSelection}.`);
-console.log(`The computer's choice is: ${computerSelection}`);
-// Evaluate round
-let result = playRound(playerSelection, computerSelection);
-//Print the results to the console
-printResults(result);
-    
+game();
+   
 //FUNCTIONS
+
+function game(){
+    for(let i = 1; i <= numberOfRounds; i++){
+        console.log(`\nRound ${i}\n\n`);
+        if (i == numberOfRounds) console.log("Final round!\n\n");
+        // Get the user's choice
+        playerSelection = getPlayerSelection();
+        //Calculate the computer's choice
+        computerSelection = getComputerSelection();
+        //Print out the choices
+        console.log(`You picked: ${playerSelection}.`);
+        console.log(`The computer's choice is: ${computerSelection}`);
+        // Evaluate round
+        result = playRound(playerSelection, computerSelection);
+        //Print the results to the console
+        printResults(result);        
+    }
+    printFinalResults();
+}
+
+//Print the final results
+function printFinalResults(){
+    if (playerScore == computerScore){
+        console.log(`${playerScore} to ${computerScore}! It's a draw!`);
+    } else {
+        playerScore > computerScore ? 
+        console.log(`Congratulations, you won ${playerScore} to ${computerScore}.`) :
+        console.log(`Unfortunately you lost ${computerScore} to ${playerScore}.`);
+    }
+}
 
 // Get the user's input
 function getPlayerSelection(){
@@ -42,10 +64,9 @@ function getComputerSelection(){
     } else return "scissors";
 }
 
-function playRound(playerSelection, computerSelection){    
-// Evaluate the round
+// Play a single round
+function playRound(playerSelection, computerSelection){
     let result = "";
-    numberOfRound++;
     if(playerSelection === computerSelection){        
         result = "It's a tie!"
     } else if (
@@ -62,12 +83,14 @@ function playRound(playerSelection, computerSelection){
     return result;
 };
 
+//Print out the results
 function printResults(result){    
     console.log(`The result of this round is: ${result}`);
     console.log(`Your score is: ${playerScore}`);
-    console.log(`The computer's score is: ${computerScore}`);
+    console.log(`The computer's score is: ${computerScore}\n`);
 }
 
+//Capitalize the first letters for the result message
 function capitalizeFirstLetter(selection){
     return selection.charAt(0).toUpperCase() + selection.slice(1);
 }
