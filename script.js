@@ -9,14 +9,14 @@ let result;
 let numberOfRounds = 5;
 
 // Greet the user
-console.log("Welcome to Rock, Paper, Scissors!");
+console.log(`Welcome to Rock, Paper, Scissors! It's a best of ${numberOfRounds}.`);
 game();
    
-//FUNCTIONS
+//FUNCTION DECLARATIONS
 
 function game(){
     for(let i = 1; i <= numberOfRounds; i++){
-        console.log(`\nRound ${i}\n\n`);
+        console.log(`\nRound ${i} of ${numberOfRounds}\n\n`);
         if (i == numberOfRounds) console.log("Final round!\n\n");
         // Get the user's choice
         playerSelection = getPlayerSelection();
